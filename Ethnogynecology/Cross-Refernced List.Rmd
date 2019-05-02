@@ -1,0 +1,130 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```{r}
+R_officinalis <- BIEN_occurrence_species(species = "Rosmarinus officinalis")
+C_rotundus <- BIEN_occurrence_species(species = "Cyperus rotundus")
+R_chalepensis <- BIEN_occurrence_species(species = "Ruta chalepensis")
+C_aurantiifolia <- BIEN_occurrence_species(species = "Citrus aurantiifolia")
+P_amarus <- BIEN_occurrence_species(species = "Phyllanthus amarus")
+O_gratissimum <- BIEN_occurrence_species(species = "Ocimum gratissimum")
+P_guajava <- BIEN_occurrence_species(species = "Psidium guajava")
+P_americana <- BIEN_occurrence_species(species = "Persea americana")
+S_occidentalis <- BIEN_occurrence_species(species = "Senna occidentalis")
+S_indicum <- BIEN_occurrence_species(species = "Sesamum indicum")
+S_latifolius <- BIEN_occurrence_species(species = "Sarcocephalus latifolius")
+X_aethiopica <- BIEN_occurrence_species(species = "Xylopia aethiopica")
+A_consimilis <- BIEN_occurrence_species(species = "Aristolochia consimilis")
+S_longepedunculata <- BIEN_occurrence_species(species = "Securidaca longepedunculata")
+Z_officinalis <- BIEN_occurrence_species(species = "Zingiber officinalis")
+G_barbadense <- BIEN_occurrence_species(species = "Gossypium barbadense")
+M_charantia <- BIEN_occurrence_species(species = "Momordica charantia")
+M_pudica <- BIEN_occurrence_species(species = "Mimosa pudica")
+C_sappan <- BIEN_occurrence_species(species = "Caesalpinia sappan")
+C_roseus <- BIEN_occurrence_species(species = "Catharanthus roseus")
+C_owariensis <- BIEN_occurrence_species(species = "Cissampelos owariensis")
+R_communis <- BIEN_occurrence_species(species = "Ricinus communis")
+S_dulcis <- BIEN_occurrence_species(species = "Scoparia dulcis")
+B_balsamifera <- BIEN_occurrence_species(species = "Blumea balsamifera")
+L_japonicus <- BIEN_occurrence_species(species = "Leonurus japonicus")
+M_chamomilla <- BIEN_occurrence_species(species = "Matricaria chamomilla")
+A_comosus <- BIEN_occurrence_species(species = "Ananas comosus")
+P_rubra <- BIEN_occurrence_species(species = "Plumeria rubra")
+
+
+R_officinalis_rangemap <- BIEN_ranges_load_species("Rosmarinus officinalis")
+C_rotundus_rangemap <- BIEN_ranges_load_species("Cyperus rotundus")
+R_chalepensis_rangemap <- BIEN_ranges_load_species("Ruta chalepensis")
+C_aurantiifolia_rangemap <- BIEN_ranges_load_species("Citrus aurantiifolia")
+P_amarus_rangemap <- BIEN_ranges_load_species("Phyllanthus amarus")
+O_gratissimum_rangemap <- BIEN_ranges_load_species("Ocimum gratissimum")
+P_guajava_rangemap <- BIEN_ranges_load_species("Psidium guajava")
+P_americana_rangemap <- BIEN_ranges_load_species("Persea americana")
+S_occidentalis_rangemap <- BIEN_ranges_load_species("Senna occidentalis")
+S_indicum_rangemap <- BIEN_ranges_load_species("Sesamum indicum")
+A_consimilis_rangemap <- BIEN_ranges_load_species("Aristolochia consimilis")
+G_barbadense_rangemap <- BIEN_ranges_load_species("Gossypium barbadense")
+M_charantia_rangemap <- BIEN_ranges_load_species("Momordica charantia")
+M_pudica_rangemap <- BIEN_ranges_load_species("Mimosa pudica")
+C_sappan_rangemap <- BIEN_ranges_load_species("Caesalpinia sappan")
+C_roseus_rangemap <- BIEN_ranges_load_species("Catharanthus roseus")
+R_chalepensis_rangemap <- BIEN_ranges_load_species("Ruta chalepensis")
+S_dulcis_rangemap <- BIEN_ranges_load_species("Scoparia dulcis")
+B_balsamifera_rangemap <- BIEN_ranges_load_species("Blumea balsamifera")
+M_chamomilla_rangemap <- BIEN_ranges_load_species("Matricaria chamomilla")
+P_rubra_rangemap <- BIEN_ranges_load_species("Plumeria rubra")
+
+```
+
+```{r}
+map('world', fill=T, col="grey", bg="light blue", xlim=c(-180,-20), ylim=c(-60, 80))
+  plot(R_officinalis_rangemap, col="green", add=T)
+```
+
+```{r}
+map('world', fill=T, col="grey", bg="light blue", xlim=c(-180,-20),ylim=c(-60, 80))
+points(cbind(R_officinalis$longitude, R_officinalis$latitude), col="brown", pch=20, cex=.8)
+points(cbind(C_rotundus$longitude, C_rotundus$latitude), col="white", pch=20, cex=.8)
+points(cbind(R_chalepensis$longitude, R_chalepensis$latitude), col="grey", pch=20, cex=.8)
+points(cbind(C_aurantiifolia$longitude, C_aurantiifolia$latitude), col="black", pch=20, cex=.8)
+points(cbind(P_amarus$longitude, P_amarus$latitude), col="blue", pch=20, cex=.8)
+points(cbind(O_gratissimum$longitude, O_gratissimum$latitude), col="red", pch=20, cex=.8)
+points(cbind(P_guajava$longitude, P_guajava$latitude), col="green", pch=20, cex=.8)
+points(cbind(P_americana$longitude, P_americana$latitude), col="red", pch=20, cex=.8)
+points(cbind(S_occidentalis$longitude, S_occidentalis$latitude), col="orange", pch=20, cex=.8)
+points(cbind(S_indicum$longitude, S_indicum$latitude), col="yellow", pch=20, cex=.8)
+points(cbind(A_consimilis$longitude, A_consimilis$latitude), col="green", pch=20, cex=.8)
+points(cbind(G_barbadense$longitude, G_barbadense$latitude), col="blue", pch=20, cex=.8)
+points(cbind(M_charantia$longitude, M_charantia$latitude), col="purple", pch=20, cex=.8)
+points(cbind(M_pudica$longitude, M_pudica$latitude), col="red", pch=20, cex=.8)
+points(cbind(C_sappan$longitude, C_sappan$latitude), col="orange", pch=20, cex=.8)
+points(cbind(C_roseus$longitude, C_roseus$latitude), col="yellow", pch=20, cex=.8)
+points(cbind(R_chalepensis$longitude, R_chalepensis$latitude), col="green", pch=20, cex=.8)
+points(cbind(S_dulcis$longitude, S_dulcis$latitude), col="blue", pch=20, cex=.8)
+points(cbind(B_balsamifera$longitude, B_balsamifera$latitude), col="green", pch=20, cex=.8)
+points(cbind(M_chamomilla$longitude, M_chamomilla$latitude), col="red", pch=20, cex=.8)
+points(cbind(P_rubra$longitude, P_rubra$latitude), col="pink", pch=20, cex=.8)
+```
+
+```{r}
+plot(all.worldclim[["bio1"]])
+points(R_officinalis[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "red")
+points(C_rotundus[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "orange")
+points(R_chalepensis[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "yellow")
+points(C_aurantiifolia[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "green")
+points(P_amarus[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "blue")
+points(O_gratissimum[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "purple")
+points(P_guajava[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "white")
+points(P_americana[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "brown")
+points(S_occidentalis[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "black")
+points(S_indicum[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "grey")
+points(A_consimilis[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "red")
+points(G_barbadense[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "orange")
+points(M_charantia[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "yellow")
+points(M_pudica[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "green")
+points(C_sappan[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "blue")
+points(C_roseus[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "purple")
+points(R_chalepensis[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "brown")
+points(S_dulcis[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "white")
+points(B_balsamifera[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "black")
+points(M_chamomilla[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "grey")
+points(P_rubra[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "brown")
+
+```
+
