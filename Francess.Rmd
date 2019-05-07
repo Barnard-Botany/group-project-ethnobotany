@@ -1,0 +1,87 @@
+---
+title: "Francess"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+#Students should already have BIEN and ape installed. Other packages to be loaded below should be included in R Studio. If not, install them!
+library(BIEN)
+library(ape) # Package for working with phylogenies in R
+library(maps) # Useful for making quick maps of occurrences
+library(sp) # A package for spatial data
+library(raster)# Another package for spatial data 
+vignette("BIEN")
+```
+
+```{r}
+E_havanense <- BIEN_occurrence_species(species = "Erythroxylum havanense")
+Z_mays <- BIEN_occurrence_species(species = "Zea mays")
+A_peruviana <- BIEN_occurrence_species(species = "Ambrosia peruviana")
+```
+
+```{r}
+E_havanense_rangemap <- BIEN_ranges_load_species("Erythroxylum havanense")
+Z_mays_rangemap <- BIEN_ranges_load_species("Zea mays")
+A_peruviana_rangemap <- BIEN_ranges_load_species("Ambrosia peruviana")
+```
+
+```{r}
+# Both can be mapped, for example: 
+map('world', fill=T, col="grey", bg="light blue", xlim=c(-85,-70), ylim=c(19,24))
+plot(Z_mays_rangemap, col="green", add=T)
+```
+
+```{r}
+# Map another Jungia species
+map('world', fill=T, col="grey", bg="light blue", xlim=c(-85,-70),ylim=c(19,24))
+plot(A_peruviana_rangemap, col="red", add=T)
+```
+
+```{r}
+# And a third Jungia
+map('world', fill=T, col="grey", bg="light blue", xlim=c(-85,-70),ylim=c(19,24))
+plot(E_havanense_rangemap, col="blue", add=T)
+```
+
+```{r}
+# Map occurence records for three species of Jungia
+map('world', fill=T, col="grey", bg="light blue", xlim=c(-85,-70),ylim=c(19,24))
+points(cbind(Z_mays$longitude, Z_mays$latitude), col="green", pch=20, cex=.8)
+points(cbind(E_havanense$longitude, E_havanense$latitude), col="blue", pch=20, cex=.8)
+points(cbind(A_peruviana$longitude, A_peruviana$latitude), col="red", pch=20, cex=.8)
+```
+
+```{r}
+plot(all.worldclim[["bio1"]])
+points(A_peruviana[,c("longitude", "latitude")], pch = 24, cex = 0.5)
+plot(all.worldclim[["bio12"]])
+points(A_peruviana[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "red")
+plot(all.worldalt[["alt"]], xlim=c(-85,-70),ylim=c(19,24))
+points(A_peruviana[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "red")
+points(E_havanense[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "blue")
+points(Z_mays[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "green")
+```
