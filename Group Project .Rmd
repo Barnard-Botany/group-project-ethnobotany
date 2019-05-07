@@ -1,0 +1,86 @@
+---
+title: "Group Project"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+#Students should already have BIEN and ape installed. Other packages to be loaded below should be included in R Studio. If not, install them!
+library(BIEN)
+library(ape) # Package for working with phylogenies in R
+library(maps) # Useful for making quick maps of occurrences
+library(sp) # A package for spatial data
+library(raster)# Another package for spatial data 
+vignette("BIEN")
+```
+
+```{r}
+A_sessilis <- BIEN_occurrence_species(species = "Alternanthera sessilis")
+C_cyminum <- BIEN_occurrence_species(species = "Cuminum cyminum")
+P_arboreum <- BIEN_occurrence_species(species = "Piper arboreum")
+```
+
+```{r}
+A_sessilis_rangemap <- BIEN_ranges_load_species("Alternanthera sessilis")
+C_cyminum_rangemap <- BIEN_ranges_load_species("Cuminum cyminum")
+P_arboreum_rangemap <- BIEN_ranges_load_species("Piper arboreum")
+```
+
+```{r}
+# Both can be mapped, for example: 
+map('world', fill=T, col="grey", bg="light blue", xlim=c(-70,-32), ylim=c(-35,5))
+plot(C_cyminum_rangemap, col="green", add=T)
+```
+
+```{r}
+# Map another Jungia species
+map('world', fill=T, col="grey", bg="light blue", xlim=c(-70,-32),ylim=c(-35,5))
+plot(P_arboreum_rangemap, col="red", add=T)
+```
+
+```{r}
+# And a third Jungia
+map('world', fill=T, col="grey", bg="light blue", xlim=c(-70,-32),ylim=c(-35,5))
+plot(A_sessilis_rangemap, col="blue", add=T)
+```
+
+```{r}
+# Map occurence records for three species of Jungia
+map('world', fill=T, col="grey", bg="light blue", xlim=c(-70,-32),ylim=c(-35,5))
+points(cbind(C_cyminum$longitude, C_cyminum$latitude), col="green", pch=20, cex=.8)
+points(cbind(A_sessilis$longitude, A_sessilis$latitude), col="blue", pch=20, cex=.8)
+points(cbind(P_arboreum$longitude, P_arboreum$latitude), col="red", pch=20, cex=.8)
+```
+
+```{r}
+plot(all.worldclim[["bio1"]])
+points(P_arboreum[,c("longitude", "latitude")], pch = 24, cex = 0.5)
+plot(all.worldclim[["bio12"]])
+points(P_arboreum[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "red")
+plot(all.worldalt[["alt"]], xlim=c(-70,-32),ylim=c(-35,5))
+points(P_arboreum[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "red")
+points(A_sessilis[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "blue")
+points(C_cyminum[,c("longitude", "latitude")], pch = 16, cex = 0.5, col = "green")
+```
